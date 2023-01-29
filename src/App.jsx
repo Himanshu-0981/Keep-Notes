@@ -1,32 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import React, { useState } from 'react';
 import './App.css'
+import Header from './components/Header'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [fName, setFName] = useState('');
+  const [lName, setLName] = useState('');
+  const [msg, setMsg] = useState('')
+  const [data, setData] = useState([]);
+
+  const handleSubmit = () => {
+    setData([{fName, lName, msg}], ...data)
+    // console.log([fName, lName, msg], ...data);
+    setFName('')
+    setLName('')
+    setMsg('')
+  }
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input
+          type="text"
+          placeholder='first name'
+          className='input-text'
+          value={fName}
+          onChange={(e) => setFName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder='last name'
+          className='input-text'
+          value={lName}
+          onChange={(e) => setLName(e.target.value)}
+        />
+        <br />
+        <textarea
+          placeholder='message'
+          value={msg}
+          onChange={(e) => setMsg(e.target.value)}>
+        </textarea>
+        <br />
+        <input
+          type="submit"
+          value="Done"
+          className='submit-btn'
+          onClick={handleSubmit}
+        />
+      </form>
+
+        {
+          data.map((e,i) => {
+            console.log(e);
+            return (
+              <div key={i} className='result-container'>
+              <div className='result-box'>
+                <h3>Name : {e.fName + " " + e.lName}</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, repellat.</p>
+              </div>
+            </div>
+            ) 
+          })
+        }
+
     </div>
   )
 }
