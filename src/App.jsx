@@ -10,11 +10,21 @@ function App() {
   const [data, setData] = useState([]);
 
   const handleSubmit = () => {
-    setData([{fName, lName, msg}], ...data)
-    // console.log([fName, lName, msg], ...data);
-    setFName('')
-    setLName('')
-    setMsg('')
+    if(fName===''){
+      console.log('its empty ');
+    }else{
+      setData([{ fName, lName, msg }, ...data],)
+      setFName('')
+      setLName('')
+      setMsg('')
+    }
+  }
+
+  const handleDelete = (e) => {
+    const arr = data.filter((elem,index)=>{
+        return index !== e;
+    })
+      setData(arr)
   }
 
   return (
@@ -49,23 +59,26 @@ function App() {
           onClick={handleSubmit}
         />
       </form>
-
-        {
-          data.map((e,i) => {
-            console.log(e);
-            return (
-              <div key={i} className='result-container'>
+      <div className='result-container'>
+      {
+        data.map((elem, i) => {
+          return (
+            <div key={i}>
               <div className='result-box'>
-                <h3>Name : {e.fName + " " + e.lName}</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, repellat.</p>
+                <h3 className='result-heading'>Name : {elem.fName + " " + elem.lName}</h3>
+                <p className='result-para'>{elem.msg}</p>
               </div>
-            </div>
-            ) 
-          })
-        }
+              <button className='delete-btn' onClick={()=>handleDelete(i)}>DELETE</button>
+              </div>
+            
+          )
+        })
+      }
+      </div>
 
     </div>
   )
 }
 
 export default App
+
