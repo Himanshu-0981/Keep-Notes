@@ -66,6 +66,7 @@ function App() {
             <div key={i}>
               <div className='result-box'>
                 <h3 className='result-heading'>Name : {elem.fName + " " + elem.lName}</h3>
+                <hr />
                 <p className='result-para'>{elem.msg}</p>
               </div>
               <button className='delete-btn' onClick={()=>handleDelete(i)}>DELETE</button>

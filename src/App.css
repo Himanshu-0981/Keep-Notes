@@ -64,8 +64,8 @@ textarea{
 
 .result-container{
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  /* flex-direction: row; */
+  justify-content: start;
   flex-wrap: wrap;
 
 }
