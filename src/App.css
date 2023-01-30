@@ -35,6 +35,17 @@ textarea{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.color-pallet-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.bg-color-pallet{
+  margin-left: 100px;
+}
+.text-color-pallet{
+  margin-right: 100px;
+}
 
 .submit-btn{
   width: 600px;
@@ -104,3 +115,4 @@ textarea{
       width: 300px;
     }
 }
+
