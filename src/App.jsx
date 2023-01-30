@@ -5,21 +5,23 @@ import Header from './components/Header'
 function App() {
   const [form, setForm] = useState(
     {
-      fName: null,
-      lName: null,
-      msg: null,
-      bgColor: null,
-      textColor: null
+      fName: '',
+      lName: '',
+      msg: '',
+      bgColor: '',
+      textColor: '',
     });
 
   const [data, setData] = useState([]);
 
   const handleSubmit = () => {
-    if ((form.fName && form.lName && form.msg) === null) {
+    if ((form.fName && form.lName && form.msg) === '') {
+      alert('input field is empty')
       return
+    }else {
+      setData([form, ...data],)
+      setForm({ fName: "", lName: "", msg: "" })
     }
-    setData([form, ...data],)
-    setForm({ fName: "", lName: "", msg: "" })
   }
 
   const handleDelete = (e) => {
