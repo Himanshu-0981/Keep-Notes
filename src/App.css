@@ -37,14 +37,28 @@ textarea{
 
 .color-pallet-container{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .bg-color-pallet{
-  margin-left: 100px;
+  margin-right: 100px;
 }
 .text-color-pallet{
-  margin-right: 100px;
+  margin-left: 100px;
+}
+
+@media only screen and (max-width:602px){
+  .color-pallet-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .bg-color-pallet{
+    margin-right: 0px;
+  }
+  .text-color-pallet{
+    margin-left: 0px;
+  }
+  
 }
 
 .submit-btn{
@@ -108,7 +122,6 @@ textarea{
 .delete-btn:hover{
   background-color: red;
 }
-
 
 @media only screen and (max-width:420px) {
     .result-box{

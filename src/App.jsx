@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'
 import Header from './components/Header'
+import Output from './components/Output';
 
 function App() {
   const [form, setForm] = useState(
@@ -24,9 +25,10 @@ function App() {
     }
   }
 
-  const handleDelete = (e) => {
-    const filterFun = data.filter((elem, index) => e != index)
-    setData(filterFun)
+  const keyPress = (event) => {
+    if(event.key == 'Enter'){
+      handleSubmit()
+    }
   }
 
   return (
@@ -39,6 +41,7 @@ function App() {
           className='input-text'
           value={form.fName}
           onChange={(e) => setForm({ ...form, fName: e.target.value })}
+          onKeyPress={(e)=>keyPress(e)}
         />
         <input
           type="text"
@@ -46,12 +49,15 @@ function App() {
           className='input-text'
           value={form.lName}
           onChange={(e) => setForm({ ...form, lName: e.target.value })}
+          onKeyPress={(e)=>keyPress(e)}
         />
         <br />
         <textarea
           placeholder='message'
           value={form.msg}
-          onChange={(e) => setForm({ ...form, msg: e.target.value })}>
+          onChange={(e) => setForm({ ...form, msg: e.target.value })}
+          onKeyPress={(e)=>keyPress(e)}
+          >
         </textarea>
         <br />
         <div className='color-pallet-container'>
@@ -60,6 +66,7 @@ function App() {
             <input type="color"
               value={form.bgColor}
               onChange={(e) => setForm({ ...form, bgColor: e.target.value })}
+              onKeyPress={(e)=>keyPress(e)}
             />
           </div>
           <div className='text-color-pallet'>
@@ -67,6 +74,7 @@ function App() {
             <input type="color"
               value={form.textColor}
               onChange={(e) => setForm({ ...form, textColor: e.target.value })}
+              onKeyPress={(e)=>keyPress(e)}
             />
           </div>
         </div>
@@ -79,20 +87,7 @@ function App() {
         />
       </form>
       <div className='result-container'>
-        {
-          data.map((elem, i) => {
-            return (
-              <div key={i}>
-                <div className='result-box' style={{ background: elem.bgColor , color:elem.textColor}}>
-                  <h3 className='result-heading'>Name : {elem.fName + " " + elem.lName}</h3>
-                  <hr />
-                  <p className='result-para'>{elem.msg}</p>
-                </div>
-                <button className='delete-btn' onClick={() => handleDelete(i)}>DELETE</button>
-              </div>
-            )
-          })
-        }
+        <Output data={data} state={setData} />
       </div>
 
     </div>
