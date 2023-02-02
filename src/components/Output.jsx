@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const Output = ({ data, state }) => {
   const handleDelete = (e) => {
